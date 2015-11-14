@@ -1,0 +1,25 @@
+.alcms-editables {
+  position: relative;
+  margin-top: 45px;
+  transition: all ease 0.1s;
+
+  &.opened {
+    margin-top: 245px;
+  }
+
+  .alcms-editable {
+    min-width: 20px;
+    outline: dashed 1px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    
+    &.white-outline {
+      outline: dashed 1px rgba(255, 255, 255, 0.7);
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &.no-highlight {
+      outline: none;
+      background: none;
+    }
+  }
+}

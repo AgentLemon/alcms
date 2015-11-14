@@ -1,0 +1,103 @@
+.alcms-editor {
+  &.menu {
+    display: table;
+    background-color: #1c1c1c;
+    border-bottom: solid 1px #3c3c3c;
+    color: #ffffff;
+    position: fixed;
+    transition: all ease 0.1s;
+    width: 100%;
+    height: 200px;
+    top: -155px;
+    z-index: 999;
+    left: 0;
+    font-size: 13px;
+
+    &.opened {
+      top: 45px;
+      bottom: auto;
+    }
+
+    .static-container {
+      display: table-cell;
+      width: 200px;
+      height: 100%;
+      padding: 5px 10px;
+      border-right: dashed 1px #3c3c3c;
+    }
+
+    .scrollable-container {
+      display: table-cell;
+      overflow-y: auto;
+      height: 100%;
+      padding: 5px 10px;
+
+      .table-wrap {
+        height: 190px;
+        overflow-y: scroll;
+
+        .tbl-blocks {
+          td, th {
+            text-align: center;
+            border-left: solid 1px #aaa;
+            border-right: solid 1px #aaa;
+            padding-left: 10px;
+            padding-right: 10px;
+            vertical-align: top;
+
+            &:first-child {
+              border-left: none;
+            }
+            &:last-child {
+              border-right: none;
+            }
+            
+            &.left {
+              text-align: left;
+            }
+            &.right {
+              text-align: right;
+            }
+
+            a {
+              color: white;
+              text-decoration: underline;
+            }
+          }
+
+          thead {
+            tr {
+              border-bottom: solid 1px #aaa;
+            }
+          }
+        }
+      }
+    }
+
+    label {
+      font-weight: normal;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .js-alcms-open-menu {
+    .up {
+      display: none;
+    }
+    &.opened {
+      .down {
+        display: none;
+      }
+      .up {
+        display: inline;
+      }
+    }
+  }
+}

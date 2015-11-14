@@ -1,0 +1,17 @@
+.alcms-editor {
+  &.editor-container {
+    background-color: #1c1c1c;
+    border-bottom: solid 1px #3c3c3c;
+    color: #ffffff;
+    position: fixed;
+    transition: all ease 0.1s;
+    width: 100%;
+    top: 45px;
+    z-index: 999;
+    left: 0;
+  }
+
+  &.menu.opened + .editor-container {
+    top: 245px;
+  }
+}
