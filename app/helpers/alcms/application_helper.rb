@@ -19,9 +19,17 @@ module Alcms
       classes = Array.wrap(classes)
       classes << 'alcms-editable'
 
-      content_tag(:div, class: classes, data: { block: block_name, text: text_name }) do
-        yield if block_given?
-        "There will be block #{block_name}:#{text_name}:#{time.to_s(:db)}"
+      block = Block.get(block_name, time).last
+      text = block.present? ? block.texts.get(text_name).last : nil
+
+      content_tag(:div, class: classes, data: { block: block_name, text: text_name, block_id: block.try(:id), text_id: text.try(:id) }) do
+        if text.try(:content).present?
+          text.content.html_safe
+        elsif block_given?
+          yield
+        else
+          ""
+        end
       end
     end
   end

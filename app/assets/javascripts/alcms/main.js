@@ -1,8 +1,10 @@
 (function($) {
   $(function() {
+    window.Alcms = {};
+
     $('body').addClass('alcms-editables');
 
-    var editor = new MediumEditor('.alcms-editable', {
+    Alcms.editor = new MediumEditor('.alcms-editable', {
       placeholder: false,
       toolbar: {
         static: true,

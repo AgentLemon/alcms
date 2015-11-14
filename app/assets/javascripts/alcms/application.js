@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require medium-editor.min
+//= require alcms/main
 //= require_tree .
