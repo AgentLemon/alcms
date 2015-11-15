@@ -21,16 +21,28 @@ module Alcms
 
       block = Block.get(block_name, time).last
       text = block.present? ? block.texts.get(text_name).last : nil
-      data = ({
+      data = get_cms_data(block_name, text_name, block, text)
+
+      render_cms_block_div(text, classes, data){ yield }
+    end
+
+    private
+
+    def get_cms_data(block_name, text_name, block, text)
+      {
         block: block_name,
         text: text_name,
         block_id: block.try(:id),
         text_id: text.try(:id)
-      } if editor_mode?)
+      } if editor_mode?
+    end
 
+    def render_cms_block_div(text, classes, data)
       content_tag(:div, class: classes, data: data) do
-        if text.try(:content).present?
-          text.content.html_safe
+        field = editor_mode? ? :content_draft : :content
+
+        if text.try(field).present?
+          text.send(field).html_safe
         elsif block_given?
           yield
         else

@@ -1,7 +1,7 @@
 module Alcms
   class Block < ActiveRecord::Base
     belongs_to :origin_block, class_name: Alcms::Block
-    has_many :texts
+    has_many :texts, dependent: :destroy
 
     accepts_nested_attributes_for :texts
 
