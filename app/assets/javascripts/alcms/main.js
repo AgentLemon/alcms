@@ -1,7 +1,7 @@
 (function($) {
-  $(function() {
-    window.Alcms = {};
+  window.Alcms = {};
 
+  $(function() {
     $('body').addClass('alcms-editables');
 
     Alcms.editor = new MediumEditor('.alcms-editable', {

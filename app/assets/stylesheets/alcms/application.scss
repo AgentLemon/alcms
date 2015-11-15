@@ -12,6 +12,10 @@
  *
  *= require medium-editor.min
  *= require medium-editor-themes-default.min
- *= require_tree .
  *= require_self
  */
+
+@import "_variables";
+
+@import "editable/*";
+@import "editor/*";

@@ -1,6 +1,6 @@
 (function($) {
   $(function() {
-    var $blocks = $('.alcms-editor.menu .scrollable-container .tbl-blocks tbody');
+    var $blocks = $('.alcms-editor.alcms-menu .scrollable-container .tbl-blocks tbody');
 
     function getBlockElement(name, starts, expires, versions) {
       var $tr = $('<tr/>');

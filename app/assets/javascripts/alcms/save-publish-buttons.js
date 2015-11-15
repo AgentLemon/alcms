@@ -25,6 +25,7 @@
     }
 
     function save(url) {
+      Alcms.toggleLoading(true);
       $.ajax({
         url: url,
         type: 'post',
@@ -32,7 +33,15 @@
           blocks: collectData()
         }),
         contentType: 'application/json',
-        accepts: 'application/json'
+        accepts: 'application/json',
+        success: function() {
+          Alcms.toggleLoading(false);
+          Alcms.notify('success', 'Successfully saved!');
+        },
+        error: function() {
+          Alcms.toggleLoading(false);
+          Alcms.notify('danger', 'Error during save!');
+        }
       });
     }
 

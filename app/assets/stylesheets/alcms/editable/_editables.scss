@@ -1,10 +1,10 @@
 .alcms-editables {
   position: relative;
-  margin-top: 45px;
-  transition: all ease 0.1s;
+  margin-top: $title-height;
+  transition: $transition;
 
   &.opened {
-    margin-top: 245px;
+    margin-top: $editor-height;
   }
 
   .alcms-editable {

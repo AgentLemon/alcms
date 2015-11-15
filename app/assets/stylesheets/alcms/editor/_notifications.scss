@@ -1,0 +1,72 @@
+$blink-low: 0.2;
+
+@keyframes blinking {
+  0% { opacity: 1; }
+  50% { opacity: $blink-low; }
+  100% { opacity: 1; }
+}
+
+@keyframes blinking-reverse {
+  0% { opacity: $blink-low; }
+  50% { opacity: 1; }
+  100% { opacity: $blink-low; }
+}
+
+.alcms-editor {
+  &.notifications-container {
+    position: fixed;
+    top: $title-height;
+    width: 100%;
+    z-index: 1002;
+    transition: $transition;
+
+    .alcms-notifications {
+      width: 220px;
+      display: inline-block;
+      float: right;
+
+      .alcms-notification {
+        display: block;
+        width: 200px;
+        border: solid 1px #3c3c3c;
+        border-radius: 5px;
+        background: white;
+        padding: 10px 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+        cursor: pointer;
+
+        &.alcms-loading {
+          background: #f0ad4e linear-gradient(-45deg, #222 25%, transparent 25%, transparent 50%, #222 50%, #222 75%, transparent 75%, transparent);
+          background-size: 40px 40px;
+          text-transform: uppercase;
+          text-shadow: -1px -1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, 1px 1px 0 #000;
+          color: white;
+          text-align: center;
+          letter-spacing: 5px;
+          font-weight: bolder;
+          font-size: 22px;
+          line-height: 27px;
+          cursor: default;
+          display: none;
+        }
+
+        &.alcms-success {
+          color: #3c763d;
+          background-color: #dff0d8;
+          border-color: #d6e9c6;
+        }
+
+        &.alcms-danger {
+          color: #a94442;
+          background-color: #f2dede;
+          border-color: #ebccd1;
+        }
+      }
+    }
+  }
+
+  &.alcms-menu.opened + .notifications-container {
+    top: $editor-height;
+  }
+}

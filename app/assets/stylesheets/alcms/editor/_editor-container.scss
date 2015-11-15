@@ -4,14 +4,14 @@
     border-bottom: solid 1px #3c3c3c;
     color: #ffffff;
     position: fixed;
-    transition: all ease 0.1s;
+    transition: $transition;
     width: 100%;
-    top: 45px;
+    top: $title-height;
     z-index: 999;
     left: 0;
   }
 
-  &.menu.opened + .editor-container {
-    top: 245px;
+  &.alcms-menu.opened + .notifications-container + .editor-container {
+    top: $editor-height;
   }
 }

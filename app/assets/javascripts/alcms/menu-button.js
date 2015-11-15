@@ -1,7 +1,7 @@
 (function($) {
   $(function() {
     var $btn = $('.js-alcms-open-menu');
-    var $menu = $('.alcms-editor.menu');
+    var $menu = $('.alcms-editor.alcms-menu');
     var $container = $('.alcms-editables');
 
     $btn.on('click', function() {
