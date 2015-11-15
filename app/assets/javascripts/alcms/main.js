@@ -12,5 +12,9 @@
         relativeContainer: $('.alcms-editor.editor-container')[0]
       }
     });
+
+    Alcms.editor.subscribe('editableInput', function(event, editable) {
+      $(editable).removeClass('initial').addClass('draft unsaved');
+    });
   });
 })(jQuery);

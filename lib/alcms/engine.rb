@@ -1,6 +1,7 @@
 module Alcms
   class Engine < ::Rails::Engine
     isolate_namespace Alcms
+    config.autoload_paths << File.expand_path("../app/renderers", __FILE__)
 
     mattr_accessor :editor_mode_condition
 

@@ -15,11 +15,65 @@
     &.white-outline {
       outline: dashed 1px rgba(255, 255, 255, 0.7);
       background-color: rgba(0, 0, 0, 0.1);
+
+      &.draft, &.initial {
+        &:before {
+          color: #3c3c3c;
+          background-color: white;
+        }
+
+        &.unsaved {
+          &:before {
+            background-color: #ff9c9c;
+          }
+        }
+      }
+    }
+
+    &.draft, &.initial {
+      &:before {
+        content: "draft";
+        display: inline-block;
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        font-size: 10px;
+        font-weight: normal;
+        padding: 2px 3px;
+        background-color: #3c3c3c;
+        color: white;
+        text-transform: lowercase;
+        line-height: 10px;
+        transition: all ease 0.3s;
+      }
+
+      &.unsaved {
+        &:before {
+          background-color: #ac3c3c;
+        }
+      }
+    }
+
+    &.initial:before {
+      content: "initial";
+    }
+
+    &:focus {
+      &.draft, &.initial {
+        :before {
+          top: -14px;
+        }
+      }
     }
 
     &.no-highlight {
       outline: none;
       background: none;
+      &.draft, &.initial {
+        :before {
+          visibility: hidden;
+        }
+      }
     }
   }
 }
