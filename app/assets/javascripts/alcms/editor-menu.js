@@ -8,7 +8,7 @@
       $a.text(name);
       $a.on('click', function() {
         $('html, body').animate({
-          scrollTop: $('.alcms-editable[data-block="' + name + '"]:first').offset().top - 300
+          scrollTop: $('.alcms-editable[data-block-name="' + name + '"]:first').offset().top - 300
         })
       });
       $tr.append($('<td class="left"/>').append($a));
@@ -18,7 +18,7 @@
       
       var $checkbox = $('<input type="checkbox" checked/>');
       $checkbox.on('change', function() {
-        $('.alcms-editable[data-block="' + name + '"]').toggleClass('no-highlight', !$checkbox.is(':checked'))
+        $('.alcms-editable[data-block-name="' + name + '"]').toggleClass('no-highlight', !$checkbox.is(':checked'))
       });
       $tr.append($('<td/>').append($checkbox));
 
@@ -38,7 +38,7 @@
       var blocks = {};
       $.each($('.alcms-editable'), function() {
         var $this = $(this);
-        var name = $this.data('block');
+        var name = $this.data('block-name');
         if (!blocks[name]) {
           blocks[name] = {
             starts: 'n/a',

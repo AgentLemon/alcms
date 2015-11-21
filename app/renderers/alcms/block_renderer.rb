@@ -41,10 +41,11 @@ module Alcms
 
     def fill_data
       @data = {
-        block: @block_name,
-        text: @text_name,
+        block_name: @block_name,
+        text_name: @text_name,
         block_id: @block.try(:id),
-        text_id: @text.try(:id)
+        text_id: @text.try(:id),
+        block: (@block || {}).as_json
       } if editor_mode?
     end
 

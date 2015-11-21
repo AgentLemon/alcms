@@ -7,7 +7,7 @@
       var blocks = {};
       $.each($('.alcms-editable'), function() {
         var $this = $(this);
-        var block_name = $this.data('block');
+        var block_name = $this.data('block-name');
         
         blocks[block_name] = blocks[block_name] || {
           id: $this.data('block-id'),
@@ -17,7 +17,7 @@
         
         blocks[block_name].texts_attributes.push({
           id: $this.data('text-id'),
-          name: $this.data('text'),
+          name: $this.data('text-name'),
           content_draft: $this.html().replace(/ +/g, ' ')
         });
       });
