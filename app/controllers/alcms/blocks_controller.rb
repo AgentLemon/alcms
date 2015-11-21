@@ -27,8 +27,8 @@ module Alcms
       params.permit(blocks: [
         :id,
         :name,
-        :starts_at,
-        :expires_at,
+        :starts_at_draft,
+        :expires_at_draft,
         texts_attributes: [
           :id,
           :name,

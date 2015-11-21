@@ -35,7 +35,7 @@ module Alcms
     end
 
     def load_records
-      @block = Block.get(@block_name, @time).last
+      @block = Block.get(@block_name, @time, editor_mode?).last
       @text = (@block.texts.get(@text_name).last if @block.present?)
     end
 

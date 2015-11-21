@@ -74,6 +74,42 @@
               border-bottom: solid 1px #aaa;
             }
           }
+
+          .date-value {
+            border: none;
+            border-bottom: solid 1px white;
+            background-color: transparent;
+            color: white;
+            font-family: monospace;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          tr.changed {
+            td:first-child a:after {
+              content: 'changed';
+              display: inline-block;
+              position: relative;
+              top: 0;
+              left: 5px;
+              font-size: 10px;
+              font-weight: normal;
+              padding: 2px 3px;
+              background-color: $badge-white-background;
+              color: $badge-white-color;
+              text-transform: lowercase;
+              line-height: 10px;
+              transition: all ease 0.3s;
+            }
+
+            &.unsaved {
+              td:first-child a:after {
+                background-color: $badge-white-unsaved-background;
+              }
+            }
+          }
         }
       }
     }

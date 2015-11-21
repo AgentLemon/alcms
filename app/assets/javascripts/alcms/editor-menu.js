@@ -2,7 +2,12 @@
   $(function() {
     var $blocks = $('.alcms-editor.alcms-menu .scrollable-container .tbl-blocks tbody');
 
-    function getBlockElement(name, starts, expires, versions) {
+    function normalizeTime(str) {
+      var dateRegexp = /[\d-T:]+/;
+      return str ? str.match(dateRegexp) : null;
+    }
+
+    function getBlockElement(name, starts, expires, changed, versions) {
       var $tr = $('<tr/>');
       var $a = $('<a href="javascript:void(0)">');
       $a.text(name);
@@ -13,8 +18,12 @@
       });
       $tr.append($('<td class="left"/>').append($a));
       
-      $tr.append($('<td/>').text(starts));
-      $tr.append($('<td/>').text(expires));
+      $tr.append($('<td/>')
+        .append($('<input id="starts_at" class="date-value" type="datetime-local">').val(normalizeTime(starts)))
+      );
+      $tr.append($('<td/>')
+        .append($('<input id="expires_at" class="date-value" type="datetime-local">').val(normalizeTime(expires)))
+      );
       
       var $checkbox = $('<input type="checkbox" checked/>');
       $checkbox.on('change', function() {
@@ -24,13 +33,15 @@
 
       $tr.append($('<td/>').text('Current'));
 
-      $tr.append(
-        $('<td/>')
-          .append($('<button class="btn btn-xs btn-success">').text('Clone'))
-          .append('&nbsp;')
-          .append($('<button class="btn btn-xs btn-danger">').text('Delete'))
+      $tr.append($('<td/>')
+        .append($('<button class="btn btn-xs btn-success">').text('Clone'))
+        .append('&nbsp;')
+        .append($('<button class="btn btn-xs btn-danger">').text('Delete'))
       )
 
+      $tr.attr('data-block-name', name);
+      $tr.toggleClass('changed', changed);
+      $tr.find('input').on('change', function() { $tr.addClass('changed unsaved'); });
       return $tr;
     }
 
@@ -39,10 +50,12 @@
       $.each($('.alcms-editable'), function() {
         var $this = $(this);
         var name = $this.data('block-name');
+        var block = $this.data('block');
         if (!blocks[name]) {
           blocks[name] = {
-            starts: 'n/a',
-            expires: 'n/a',
+            starts: block.starts_at_draft || block.starts_at,
+            expires: block.expires_at_draft || block.expires_at,
+            changed: block.starts_at_draft != block.starts_at || block.expires_at_draft != block.expires_at,
             versions: []
           }
         }
@@ -53,7 +66,7 @@
     $blocks.empty();
     var blocks = gatherBlocks();
     $.each(blocks, function(key, value) {
-      $blocks.append(getBlockElement(key, value.starts, value.expires, value.versions))
+      $blocks.append(getBlockElement(key, value.starts, value.expires, value.changed, value.versions))
     })
   });
 })(jQuery);

@@ -18,13 +18,13 @@
 
       &.draft, &.initial {
         &:before {
-          color: #3c3c3c;
-          background-color: white;
+          color: $badge-white-color;
+          background-color: $badge-white-background;
         }
 
         &.unsaved {
           &:before {
-            background-color: #ff9c9c;
+            background-color: $badge-white-unsaved-background;
           }
         }
       }
@@ -40,8 +40,8 @@
         font-size: 10px;
         font-weight: normal;
         padding: 2px 3px;
-        background-color: #3c3c3c;
-        color: white;
+        background-color: $badge-background;
+        color: $badge-color;
         text-transform: lowercase;
         line-height: 10px;
         transition: all ease 0.3s;
@@ -49,7 +49,7 @@
 
       &.unsaved {
         &:before {
-          background-color: #ac3c3c;
+          background-color: $badge-unsaved-background;
         }
       }
     }
