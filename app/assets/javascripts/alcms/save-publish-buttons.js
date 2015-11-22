@@ -57,6 +57,7 @@
         Alcms.notify('success', 'Successfully saved!');
         $('.alcms-editable.unsaved').removeClass('unsaved');
         $('.alcms-editable.initial').removeClass('initial').addClass('draft');
+        $('.alcms-editor .tbl-blocks tr.unsaved').removeClass('unsaved');
       });
     });
 

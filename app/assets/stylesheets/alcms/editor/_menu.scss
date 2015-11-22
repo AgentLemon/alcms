@@ -1,6 +1,10 @@
 .alcms-editor {
   &.alcms-menu {
-    display: table;
+    * {
+      box-sizing: content-box;
+      line-height: normal;
+    }
+
     background-color: #1c1c1c;
     color: #ffffff;
     position: fixed;
@@ -20,22 +24,23 @@
     }
 
     .static-container {
-      display: table-cell;
-      width: 200px;
-      height: 100%;
-      padding: 5px 10px;
+      display: inline-block;
+      float: left;
+      width: 250px;
+      height: $menu-container-height;
+      padding: $menu-container-padding;
       border-right: dashed 1px #3c3c3c;
     }
 
     .scrollable-container {
-      display: table-cell;
+      display: block;
       overflow-y: auto;
-      height: 100%;
-      padding: 5px 10px;
+      height: $menu-container-height;
+      padding: $menu-container-padding;
 
       .table-wrap {
         height: 190px;
-        overflow-y: auto;
+        overflow: auto;
 
         .tbl-blocks {
           border-collapse: collapse;
@@ -48,6 +53,7 @@
             padding: 0 10px;
             vertical-align: top;
             line-height: 1.714;
+            white-space: nowrap;
 
             &:first-child {
               border-left: none;
@@ -72,18 +78,6 @@
           thead {
             tr {
               border-bottom: solid 1px #aaa;
-            }
-          }
-
-          .date-value {
-            border: none;
-            border-bottom: solid 1px white;
-            background-color: transparent;
-            color: white;
-            font-family: monospace;
-
-            &:focus {
-              outline: none;
             }
           }
 
@@ -117,6 +111,7 @@
     label {
       font-weight: normal;
       cursor: pointer;
+      line-height: normal;
     }
 
     input[type="checkbox"] {
@@ -124,6 +119,43 @@
       height: 16px;
       position: relative;
       top: 3px;
+    }
+
+    input.date-value {
+      border: none;
+      border-bottom: solid 1px white;
+      background-color: transparent;
+      color: white;
+      font-family: monospace;
+      font-size: 13.33px;
+      line-height: normal;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .alcms-menu-field {
+      white-space: nowrap;
+
+      label {
+        display: inline-block;
+        position: relative;
+        top: 2px;
+        margin: 0 5px 0 0;
+      }
+
+      input + button {
+        margin-left: 10px;
+      }
+    }
+
+    .alcms-menu-checkboxes {
+      margin-top: 10px;
+
+      label {
+        display: inline;
+      }
     }
   }
 

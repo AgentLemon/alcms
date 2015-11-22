@@ -41,7 +41,7 @@
 
       $tr.attr('data-block-name', name);
       $tr.toggleClass('changed', changed);
-      $tr.find('input').on('change', function() { $tr.addClass('changed unsaved'); });
+      $tr.find('input.date-value').on('change', function() { $tr.addClass('changed unsaved'); });
       return $tr;
     }
 

@@ -18,4 +18,9 @@
 @import "_variables";
 
 @import "editable/*";
-@import "editor/*";
+
+@import "editor/editor";
+@import "editor/menu";
+@import "editor/editor-container";
+@import "editor/notifications";
+@import "editor/buttons";
