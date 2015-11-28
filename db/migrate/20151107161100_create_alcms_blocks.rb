@@ -4,6 +4,8 @@ class CreateAlcmsBlocks < ActiveRecord::Migration
       t.string :name
       t.datetime :starts_at
       t.datetime :expires_at
+      t.datetime :starts_at_draft
+      t.datetime :expires_at_draft
       t.integer :origin_block_id
 
       t.timestamps null: false
