@@ -9,7 +9,9 @@ module Alcms
       time ||= Time.now
       fields = 'starts_at', 'expires_at'
       fields.each{ |f| f << '_draft' } if draft
-      where("name = ? and (#{fields.first} < ? or #{fields.first} is null) and (#{fields.last} > ? or #{fields.last} is null)", name, time, time)
+      where(name: name)
+        .where("#{fields.first} < ? or #{fields.first} is null", time)
+        .where("#{fields.last} > ? or #{fields.last} is null", time)
         .order(:id)
     }
 

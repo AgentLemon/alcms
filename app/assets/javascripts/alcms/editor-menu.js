@@ -31,13 +31,22 @@
       });
       $tr.append($('<td/>').append($checkbox));
 
-      $tr.append($('<td/>').text('Current'));
+      var $versions = $('<td/>');
+      $.each(versions, function(index, version) {
+        var $ver = $('<div class="block-version"/>');
+        $ver.html(version.starts_at_draft + '&nbsp;‒&nbsp;' + version.expires_at_draft);
+        if (version.initial) {
+          $ver.append('&nbsp;(initial)')
+        }
+        $versions.append($ver);
+      });
+      $tr.append($versions);
 
       $tr.append($('<td/>')
         .append($('<button class="btn btn-xs btn-success">').text('Clone'))
         .append('&nbsp;')
         .append($('<button class="btn btn-xs btn-danger">').text('Delete'))
-      )
+      );
 
       $tr.attr('data-block-name', name);
       $tr.toggleClass('changed', changed);
@@ -56,7 +65,7 @@
             starts: block.starts_at_draft || block.starts_at,
             expires: block.expires_at_draft || block.expires_at,
             changed: block.starts_at_draft != block.starts_at || block.expires_at_draft != block.expires_at,
-            versions: []
+            versions: $this.data('versions')
           }
         }
       });
