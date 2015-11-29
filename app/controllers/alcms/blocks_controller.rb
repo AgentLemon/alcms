@@ -3,16 +3,24 @@ module Alcms
     def save
       prepare_drafts
       @blocks.each(&:save!)
-      render json: { success: true }
+      render_response
     end
 
     def publish
       prepare_drafts
       @blocks.each(&:publish!)
-      render json: { success: true }
+      render_response
     end
 
     private
+
+    def render_response
+      render json: { success: true, blocks: blocks_response }
+    end
+
+    def blocks_response
+      @blocks.map { |block| BlockJsonRenderer.new(block).render }
+    end
 
     def prepare_drafts
       attributes = blocks_params[:blocks]

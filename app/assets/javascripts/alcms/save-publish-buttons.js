@@ -31,6 +31,47 @@
       return $.map(blocks, function(value, key) { return value; });
     }
 
+    function reassignBlocks(blocks) {
+      function findBlock(name) {
+        for(var i = 0; i < blocks.length; i++) {
+          if (blocks[i].name === name) {
+            return blocks[i];
+          }
+        }
+        return null;
+      }
+
+      function findText(block, name) {
+        for(var i = 0; i < block.texts.length; i++) {
+          if (block.texts[i].name === name) {
+            return block.texts[i];
+          }
+        }
+        return null;
+      }
+
+      $.each($('.alcms-editable'), function() {
+        var $this = $(this);
+        var block = findBlock($this.data('block-name'));
+        if (block) {
+          var blockData = $.extend({}, block, true);
+          delete blockData.versions;
+          delete blockData.texts;
+
+          $this.data('block-id', block.id);
+          $this.data('block', blockData);
+          $this.data('versions', block.versions);
+
+          var text = findText(block, $this.data('text-name'));
+          if (text) {
+            $this.data('text-id', text.id);
+          }
+        }
+      });
+
+      $(document).trigger('saveSuccess');
+    }
+
     function save(url, callback) {
       Alcms.toggleLoading(true);
       $.ajax({
@@ -43,6 +84,7 @@
         accepts: 'application/json',
         success: function(response) {
           Alcms.toggleLoading(false);
+          reassignBlocks(response.blocks);
           callback && callback(response);
         },
         error: function() {
@@ -52,7 +94,7 @@
       });
     }
 
-    $('.alcms-save').on('click', function() {
+    $save.on('click', function() {
       save($(this).data('url'), function() {
         Alcms.notify('success', 'Successfully saved!');
         $('.alcms-editable.unsaved').removeClass('unsaved');
@@ -61,7 +103,7 @@
       });
     });
 
-    $('.alcms-publish').on('click', function() {
+    $publish.on('click', function() {
       save($(this).data('url'), function() {
         Alcms.notify('success', 'Successfully published!');
         $('.alcms-editable.draft').removeClass('draft').removeClass('unsaved');

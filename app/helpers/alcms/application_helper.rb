@@ -18,8 +18,14 @@ module Alcms
     def render_cms_block(block_name, text_name, time: nil, classes: [], &block)
       time ||= params[:alcms_date] if editor_mode?
       time ||= Time.now
-      BlockRenderer.new( block_name, text_name, time, classes,
-        editor_mode?, (capture(&block) if block_given?) ).render
+      BlockRenderer.new(
+        block_name,
+        text_name,
+        time,
+        classes,
+        editor_mode?,
+        (capture(&block) if block_given?)
+      ).render
     end
   end
 end

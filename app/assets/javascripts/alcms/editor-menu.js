@@ -72,10 +72,13 @@
       return blocks;
     }
 
-    $blocks.empty();
-    var blocks = gatherBlocks();
-    $.each(blocks, function(key, value) {
-      $blocks.append(getBlockElement(key, value.starts, value.expires, value.changed, value.versions))
-    })
+    $(document).on('saveSuccess', function() {
+      $blocks.empty();
+      var blocks = gatherBlocks();
+      $.each(blocks, function(key, value) {
+        $blocks.append(getBlockElement(key, value.starts, value.expires, value.changed, value.versions))
+      })
+    });
+    $(document).trigger('saveSuccess');
   });
 })(jQuery);
