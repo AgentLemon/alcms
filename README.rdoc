@@ -1,3 +1,14 @@
 = Alcms
 
 This project rocks and uses MIT-LICENSE.
+
+Setup
+-----
+
+config/initializers/alcms.rb
+
+    Alcms::Engine.setup do |config|
+      config.editor_mode_if do
+        params[:editor]
+      end
+    end
