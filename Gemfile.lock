@@ -154,6 +154,8 @@ GEM
     tilt (2.0.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2015.7)
+      tzinfo (>= 1.0.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -167,3 +169,4 @@ DEPENDENCIES
   factory_girl_rails
   rspec-rails
   sqlite3
+  tzinfo-data
