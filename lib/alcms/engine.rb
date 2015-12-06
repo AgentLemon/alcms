@@ -1,5 +1,7 @@
 module Alcms
   class Engine < ::Rails::Engine
+    require 'jquery-rails'
+
     isolate_namespace Alcms
     config.autoload_paths << File.expand_path('../app/renderers', __FILE__)
 

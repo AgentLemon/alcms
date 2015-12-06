@@ -16,7 +16,7 @@ module Alcms
     end
 
     def render_cms_block(block_name, text_name, time: nil, classes: [], &block)
-      time ||= params[:alcms_date] if editor_mode?
+      time ||= params[:alcms_date].to_time if editor_mode? && params[:alcms_date].present?
       time ||= Time.now
       BlockRenderer.new(
         block_name,
