@@ -17,7 +17,8 @@
 
 @import "_variables";
 
-@import "editable/*";
+@import "editable/editable";
+@import "editable/editables";
 
 @import "editor/editor";
 @import "editor/menu";
