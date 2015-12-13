@@ -2,19 +2,14 @@
   window.Alcms = {};
 
   $(function() {
-    $('body').addClass('alcms-editables');
+    $body = $('body');
+    $wrapper = $('<div/>').addClass('alcms-editables').append($body.children());
+    $body.empty().append($wrapper);
 
-    Alcms.editor = new MediumEditor('.alcms-editable', {
-      placeholder: false,
-      toolbar: {
-        static: true,
-        updateOnEmptySelection: true,
-        relativeContainer: $('.alcms-editor.editor-container')[0]
-      }
-    });
-
-    Alcms.editor.subscribe('editableInput', function(event, editable) {
-      $(editable).removeClass('initial').addClass('draft unsaved');
-    });
+    $('.alcms-editable').each(function() {
+      var $this = $(this);
+      $this.attr('contenteditable', true);
+      CKEDITOR.inline(this).on('change', function() { $this.removeClass('initial').addClass('draft unsaved'); });
+    })
   });
 })(jQuery);

@@ -10,7 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require alcms/global
 //= require jquery
-//= require medium-editor.min
+//= require ckeditor
 //= require alcms/main
 //= require_tree .
