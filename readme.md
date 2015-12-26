@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/AgentLemon/alcms/badges/gpa.svg)](https://codeclimate.com/github/AgentLemon/alcms)
+
 Setup
 -----
 
