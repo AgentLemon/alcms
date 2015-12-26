@@ -11,6 +11,17 @@ config/initializers/alcms.rb
       end
     end
 
+layouts
+
+    <head>
+      ...
+      = alcms_header    
+    </head>
+    <body>
+      = alcms_editor
+      ...
+    </body>
+
 Tests
 -----
 
