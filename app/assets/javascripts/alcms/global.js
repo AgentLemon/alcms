@@ -1,1 +1,1 @@
-CKEDITOR_BASEPATH = '/alcms/'
+CKEDITOR_BASEPATH = '/alcms/ckeditor/'
