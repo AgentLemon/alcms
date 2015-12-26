@@ -7,7 +7,7 @@ config/initializers/alcms.rb
 
     Alcms::Engine.setup do |config|
       config.editor_mode_if do
-        params[:editor]
+        params[:editor] && current_user.admin?
       end
     end
 

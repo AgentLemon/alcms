@@ -89,6 +89,7 @@
         success: function(response) {
           Alcms.toggleLoading(false);
           reassignBlocks(response.blocks);
+          window.Alcms.unsaved = false;
           callback && callback(response);
         },
         error: function() {
