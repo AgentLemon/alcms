@@ -25,5 +25,12 @@ module Alcms
       prepare_for_publish
       save!
     end
+
+    def duplicate!
+      block = self.dup
+      self.texts.each { |text| block.texts << text.dup }
+      block.save!
+      block
+    end
   end
 end

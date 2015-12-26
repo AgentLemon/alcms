@@ -7,7 +7,7 @@
       return str ? str.match(dateRegexp) : null;
     }
 
-    function getBlockElement(name, starts, expires, changed, versions) {
+    function getBlockElement(name, starts, expires, changed, versions, urls) {
       var $tr = $('<tr/>');
       var $a = $('<a href="javascript:void(0)">');
       $a.text(name);
@@ -42,11 +42,19 @@
       });
       $tr.append($versions);
 
-      $tr.append($('<td/>')
-        .append($('<button class="btn btn-xs btn-success">').text('Clone'))
-        .append('&nbsp;')
-        .append($('<button class="btn btn-xs btn-danger">').text('Delete'))
-      );
+      var $clone = $('<button class="alcms-clone btn btn-xs btn-success">').text('Clone');
+      var $destroy = $('<button class="alcms-destroy btn btn-xs btn-danger">').text('Delete');
+      if (urls.clone) {
+        $clone.attr('data-url', urls.clone);
+      } else {
+        $clone.addClass('disabled').attr('disabled', 'disabled');
+      }
+      if (urls.destroy) {
+        $destroy.attr('data-url', urls.destroy);
+      } else {
+        $destroy.addClass('disabled').attr('disabled', 'disabled');
+      }
+      $tr.append($('<td/>').append($clone).append('&nbsp;').append($destroy));
 
       $tr.attr('data-block-name', name);
       $tr.toggleClass('changed', changed);
@@ -65,7 +73,8 @@
             starts: block.starts_at_draft || block.starts_at,
             expires: block.expires_at_draft || block.expires_at,
             changed: block.starts_at_draft != block.starts_at || block.expires_at_draft != block.expires_at,
-            versions: $this.data('versions')
+            versions: $this.data('versions'),
+            urls: { clone: $this.data('clone-path'), destroy: $this.data('destroy-path') }
           }
         }
       });
@@ -76,7 +85,7 @@
       $blocks.empty();
       var blocks = gatherBlocks();
       $.each(blocks, function(key, value) {
-        $blocks.append(getBlockElement(key, value.starts, value.expires, value.changed, value.versions))
+        $blocks.append(getBlockElement(key, value.starts, value.expires, value.changed, value.versions, value.urls))
       })
     });
     $(document).trigger('saveSuccess');

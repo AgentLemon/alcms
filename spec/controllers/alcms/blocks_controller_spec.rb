@@ -133,4 +133,56 @@ describe Alcms::BlocksController, type: :controller do
       expect(text.content).to eq(new_content)
     end
   end
+
+  describe "deleting" do
+    let!(:text){ create :hello_text }
+
+    it "deletes block" do
+      blocks_count = Alcms::Block.count
+      texts_count = Alcms::Text.count
+
+      delete :destroy, id: text.block.id
+
+      expect(response).to be_success
+      expect(Alcms::Block.count).to eq(blocks_count - 1)
+      expect(Alcms::Text.count).to eq(texts_count - 1)
+    end
+  end
+
+  describe "cloning" do
+    let!(:text){ create :hello_text }
+
+    it "clones block" do
+      blocks_count = Alcms::Block.count
+      texts_count = Alcms::Text.count
+
+      post :clone, id: text.block.id
+
+      expect(response).to be_success
+      expect(Alcms::Block.count).to eq(blocks_count + 1)
+      expect(Alcms::Text.count).to eq(texts_count + 1)
+    end
+
+    it "creates block with same fields" do
+      old = text.block
+      post :clone, id: old.id
+      new = Alcms::Block.last
+
+      expect(response).to be_success
+      [:name, :starts_at, :expires_at, :starts_at_draft, :expires_at_draft, :origin_block_id].each do |field|
+        expect(new.send(field)).to eq(old.send(field))
+      end
+    end
+
+    it "creates texts with same fields" do
+      old = text
+      post :clone, id: text.block.id
+      new = Alcms::Block.last.texts.first
+
+      expect(response).to be_success
+      [:name, :content, :content_draft].each do |field|
+        expect(new.send(field)).to eq(old.send(field))
+      end
+    end
+  end
 end

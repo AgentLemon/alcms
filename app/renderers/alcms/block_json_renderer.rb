@@ -11,6 +11,8 @@ module Alcms
       result = @block.as_json
       result['versions'] = versions
       result['texts'] = texts
+      result['clone_path'] = get_url('clone')
+      result['destroy_path'] = get_url('destroy')
       result
     end
 

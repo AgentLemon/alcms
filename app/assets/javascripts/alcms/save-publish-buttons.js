@@ -57,10 +57,14 @@
           var blockData = $.extend({}, block, true);
           delete blockData.versions;
           delete blockData.texts;
+          delete blockData.clone_path;
+          delete blockData.destroy_path;
 
           $this.data('block-id', block.id);
           $this.data('block', blockData);
           $this.data('versions', block.versions);
+          $this.data('clone-path', block.clone_path);
+          $this.data('destroy-path', block.destroy_path);
 
           var text = findText(block, $this.data('text-name'));
           if (text) {

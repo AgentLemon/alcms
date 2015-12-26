@@ -1,18 +1,33 @@
 module Alcms
   class BlocksController < Alcms::ApplicationController
+    before_action :prepare_drafts, only: [:save, :publish]
+    before_action :load_block, only: [:clone, :destroy]
+
     def save
-      prepare_drafts
       @blocks.each(&:save!)
       render_response
     end
 
     def publish
-      prepare_drafts
       @blocks.each(&:publish!)
       render_response
     end
 
+    def clone
+      @block.duplicate!
+      render json: { success: true }
+    end
+
+    def destroy
+      @block.destroy
+      render json: { success: true }
+    end
+
     private
+
+    def load_block
+      @block = Block.find(params[:id])
+    end
 
     def render_response
       render json: { success: true, blocks: blocks_response }

@@ -1,12 +1,12 @@
 (function($) {
   $(function() {
-    $date = $('.alcms-editor #alcms-time-travel')
+    var $date = $('.alcms-editor #alcms-time-travel');
 
     function getParams() {
       var params = {};
-      var search = location.search.substr(1) || ""
+      var search = location.search.substr(1) || "";
       search.split('&').forEach(function(item) {
-        tmp = item.split('=');
+        var tmp = item.split('=');
         params[tmp[0]] = decodeURIComponent(tmp[1]);
       });
       return params;

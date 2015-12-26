@@ -23,5 +23,13 @@ module Alcms::BlockRenderer::Concern
     def format_time(time)
       time.present? ? I18n.l(time, format: :alcms) : I18n.t('alcms.nil_time')
     end
+
+    def get_url(action)
+      if @block.try(:id).present?
+        Alcms::Engine.routes.url_for(controller: 'alcms/blocks', action: action, id: @block.try(:id), only_path: true)
+      else
+        nil
+      end
+    end
   end
 end

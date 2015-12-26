@@ -47,7 +47,9 @@ module Alcms
         block_id: @block.try(:id),
         text_id: @text.try(:id),
         block: (@block || {}).as_json,
-        versions: versions.as_json
+        versions: versions.as_json,
+        clone_path: get_url('clone'),
+        destroy_path: get_url('destroy')
       } if editor_mode?
     end
 
