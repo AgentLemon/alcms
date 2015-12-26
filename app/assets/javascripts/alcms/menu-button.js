@@ -6,6 +6,11 @@
 
     $btn.on('click', function() {
       $.each([$menu, $btn, $container], function() { $(this).toggleClass('opened'); })
+      window.location.hash = $btn.hasClass('opened') ? "#expanded" : "";
     })
+
+    if (window.location.hash == "#expanded") {
+      $btn.click();
+    }
   });
 })(jQuery);

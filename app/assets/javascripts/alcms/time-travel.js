@@ -22,7 +22,7 @@
       }
       
       Alcms.toggleLoading(true);
-      location.href = location.origin + location.pathname + '?' + $.param(params);
+      location.href = location.origin + location.pathname + '?' + $.param(params) + location.hash;
     });
   });
 })(jQuery);
