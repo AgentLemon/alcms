@@ -200,27 +200,23 @@ describe Alcms::BlocksController, type: :controller do
     end
 
     it "doesn't allow malefactor to save block" do
-      text_updated_at = text.updated_at
-      block_updated_at = block.updated_at
       post :save, params
       text.reload
       block.reload
 
       expect(response.status).to eq(403)
-      expect(text.updated_at).to eq(text_updated_at)
-      expect(block.updated_at).to eq(block_updated_at)
+      expect(text.content_draft).not_to eq(new_content)
+      expect(block.starts_at_draft).not_to eq(new_starts_at)
     end
 
     it "doesn't allow malefactor to publish block" do
-      text_updated_at = text.updated_at
-      block_updated_at = block.updated_at
       post :publish, params
       text.reload
       block.reload
 
       expect(response.status).to eq(403)
-      expect(text.updated_at).to eq(text_updated_at)
-      expect(block.updated_at).to eq(block_updated_at)
+      expect(text.content_draft).not_to eq(new_content)
+      expect(block.starts_at_draft).not_to eq(new_starts_at)
     end
 
     it "doesn't allow malefactor to clone block" do
