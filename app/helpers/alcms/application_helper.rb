@@ -1,7 +1,7 @@
 module Alcms
   module ApplicationHelper
     def editor_mode?
-      instance_eval(&Alcms::Engine.editor_mode_condition)
+      instance_eval(&Alcms::Engine.can_save) && instance_eval(&Alcms::Engine.editor_mode)
     end
 
     def alcms_header

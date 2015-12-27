@@ -185,4 +185,64 @@ describe Alcms::BlocksController, type: :controller do
       end
     end
   end
+
+  describe "security" do
+    let!(:text){ create :hello_text }
+    let!(:block){ text.block }
+    let!(:params) do
+      result = get_params(block, text)
+      b = result[:blocks][0]
+      b[:texts_attributes][:content] = b[:texts_attributes][:content_draft] = new_content
+      b[:starts_at] = b[:starts_at_draft] = new_starts_at
+      b[:expires_at] = b[:expires_at_draft] = new_expires_at
+      result[:i_am_hacker] = true
+      result
+    end
+
+    it "doesn't allow malefactor to save block" do
+      text_updated_at = text.updated_at
+      block_updated_at = block.updated_at
+      post :save, params
+      text.reload
+      block.reload
+
+      expect(response.status).to eq(403)
+      expect(text.updated_at).to eq(text_updated_at)
+      expect(block.updated_at).to eq(block_updated_at)
+    end
+
+    it "doesn't allow malefactor to publish block" do
+      text_updated_at = text.updated_at
+      block_updated_at = block.updated_at
+      post :publish, params
+      text.reload
+      block.reload
+
+      expect(response.status).to eq(403)
+      expect(text.updated_at).to eq(text_updated_at)
+      expect(block.updated_at).to eq(block_updated_at)
+    end
+
+    it "doesn't allow malefactor to clone block" do
+      blocks_count = Alcms::Block.count
+      texts_count = Alcms::Text.count
+
+      post :clone, id: block.id, i_am_hacker: true
+
+      expect(response.status).to eq(403)
+      expect(Alcms::Block.count).to eq(blocks_count)
+      expect(Alcms::Text.count).to eq(texts_count)
+    end
+
+    it "doesn't allow malefactor to destroy block" do
+      blocks_count = Alcms::Block.count
+      texts_count = Alcms::Text.count
+
+      delete :destroy, id: block.id, i_am_hacker: true
+
+      expect(response.status).to eq(403)
+      expect(Alcms::Block.count).to eq(blocks_count)
+      expect(Alcms::Text.count).to eq(texts_count)
+    end
+  end
 end

@@ -9,14 +9,23 @@ module Alcms
       app.middleware.insert_before(::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public")
     end
 
-    mattr_accessor :editor_mode_condition
+    mattr_accessor :editor_mode
+    mattr_accessor :can_save
 
-    self.editor_mode_condition = Proc.new do
+    self.editor_mode = Proc.new do
       params[:edit]
     end
 
-    def self.editor_mode_if(&block)
-      self.editor_mode_condition = Proc.new(&block)
+    self.can_save = Proc.new do
+      true
+    end
+
+    def self.editor_mode_condition(&block)
+      self.editor_mode = Proc.new(&block)
+    end
+
+    def self.can_save_condition(&block)
+      self.can_save = Proc.new(&block)
     end
 
     def self.setup(&block)

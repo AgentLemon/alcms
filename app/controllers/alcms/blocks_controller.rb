@@ -1,5 +1,6 @@
 module Alcms
   class BlocksController < Alcms::ApplicationController
+    before_action :check_permissions
     before_action :prepare_drafts, only: [:save, :publish]
     before_action :load_block, only: [:clone, :destroy]
 
@@ -24,6 +25,10 @@ module Alcms
     end
 
     private
+
+    def check_permissions
+      return head :forbidden unless instance_eval(&Alcms::Engine.can_save)
+    end
 
     def load_block
       @block = Block.find(params[:id])
