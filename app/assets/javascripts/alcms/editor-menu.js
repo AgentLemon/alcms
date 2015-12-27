@@ -3,8 +3,8 @@
     var $blocks = $('.alcms-editor.alcms-menu .scrollable-container .tbl-blocks tbody');
 
     function normalizeTime(str) {
-      var dateRegexp = /[\d-T:]+/;
-      return str ? str.match(dateRegexp) : null;
+      var dateRegexp = /([\d\-T:]+):\d{2}/;
+      return str ? str.match(dateRegexp)[1].replace('T', ' ') : null;
     }
 
     function getBlockElement(name, starts, expires, changed, versions, urls) {
@@ -19,11 +19,12 @@
       $tr.append($('<td class="left"/>').append($a));
       
       $tr.append($('<td/>')
-        .append($('<input id="starts_at" class="date-value" type="datetime-local">').val(normalizeTime(starts)))
+        .append($('<input id="starts_at" class="date-value alcms-datetime">').val(normalizeTime(starts)))
       );
       $tr.append($('<td/>')
-        .append($('<input id="expires_at" class="date-value" type="datetime-local">').val(normalizeTime(expires)))
+        .append($('<input id="expires_at" class="date-value alcms-datetime">').val(normalizeTime(expires)))
       );
+      $tr.initAlcmsDates();
       
       var $checkbox = $('<input type="checkbox" checked/>');
       $checkbox.on('change', function() {

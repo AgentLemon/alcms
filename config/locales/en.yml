@@ -24,4 +24,4 @@ en:
     nil_time: n/a
   time:
     formats:
-      alcms: '%Y-%m-%d&nbsp;%l:%M&nbsp;%P'
+      alcms: '%Y-%m-%d %H:%M'

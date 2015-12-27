@@ -13,5 +13,6 @@
 //= require alcms/global
 //= require jquery
 //= require ckeditor
+//= require jquery.datetimepicker.full.min
 //= require alcms/main
 //= require_tree .
