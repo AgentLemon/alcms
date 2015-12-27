@@ -1,4 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/AgentLemon/alcms/badges/gpa.svg)](https://codeclimate.com/github/AgentLemon/alcms)
+[![Test Coverage](https://codeclimate.com/github/AgentLemon/alcms/badges/coverage.svg)](https://codeclimate.com/github/AgentLemon/alcms/coverage)
+[![Build Status](https://semaphoreci.com/api/v1/projects/07454e9e-b76d-48ee-9e1f-b1ce919c3dd3/645416/badge.svg)](https://semaphoreci.com/AgentLemon/alcms)
 
 Setup
 -----
