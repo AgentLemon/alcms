@@ -107,4 +107,15 @@ describe HomeController, type: :controller do
       expect(response.body).to match(future_text.content_draft)
     end
   end
+
+  describe "advanced timing" do
+    let!(:present_text){ create :present_text }
+    let!(:hello_tet){ create :hello_text }
+
+    it "renders block with dates with more priority than block without" do
+      get :index
+      expect(response).to be_success
+      expect(response.body).to match(present_text.content)
+    end
+  end
 end

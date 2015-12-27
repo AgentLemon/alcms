@@ -12,6 +12,12 @@ module Alcms
       where(name: name)
         .where("#{fields.first} < ? or #{fields.first} is null", time)
         .where("#{fields.last} > ? or #{fields.last} is null", time)
+        .order(%Q{
+          case
+            when #{fields.first} is null and #{fields.last} is null then 0
+            when #{fields.first} is null or #{fields.last} is null then 1
+            else 2
+          end })
         .order(:id)
     }
 
