@@ -15,7 +15,7 @@ module Alcms
       render 'alcms/editor' if editor_mode?
     end
 
-    def render_cms_block(block_name, text_name, time: nil, classes: [], &block)
+    def render_cms_block(block_name, text_name, time: nil, classes: [], readonly: false, &block)
       time ||= params[:alcms_date].to_time if editor_mode? && params[:alcms_date].present?
       time ||= Time.now
       BlockRenderer.new(
@@ -24,6 +24,7 @@ module Alcms
         time,
         classes,
         editor_mode?,
+        readonly,
         (capture(&block) if block_given?)
       ).render
     end

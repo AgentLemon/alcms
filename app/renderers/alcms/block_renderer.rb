@@ -5,12 +5,13 @@ module Alcms
 
     attr_accessor :output_buffer
 
-    def initialize(block_name, text_name, time, classes, editor_mode, default_text = '')
+    def initialize(block_name, text_name, time, classes, editor_mode, readonly, default_text = '')
       @block_name = block_name
       @text_name = text_name
       @time = time
       @classes = Array.wrap(classes)
       @editor_mode = editor_mode
+      @readonly = readonly
       @default_text = default_text
     end
 
@@ -29,6 +30,7 @@ module Alcms
 
     def expand_classes
       @classes << 'alcms-editable'
+      @classes << 'alcms-readonly' if @readonly
       if editor_mode?
         @classes << 'draft' unless @text.try(:content) == @text.try(:content_draft)
         @classes << 'initial' if @text.blank?

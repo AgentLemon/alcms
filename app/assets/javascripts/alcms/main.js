@@ -6,7 +6,7 @@
     var $wrapper = $('<div/>').addClass('alcms-editables').append($body.children());
     $body.empty().append($wrapper);
 
-    $('.alcms-editable').each(function() {
+    $('.alcms-editable:not(.alcms-readonly)').each(function() {
       var $this = $(this);
       $this.attr('contenteditable', true);
       CKEDITOR.inline(this).on('change', function() {
