@@ -6,6 +6,8 @@
     var $wrapper = $('<div/>').addClass('alcms-editables').append($body.children());
     $body.empty().append($wrapper);
 
+    CKEDITOR.config.stylesSet = 'alcms_styles:/alcms/styles.js';
+
     $('.alcms-editable:not(.alcms-readonly)').each(function() {
       var $this = $(this);
       $this.attr('contenteditable', true);
@@ -13,7 +15,7 @@
         $this.removeClass('initial').addClass('draft unsaved');
         window.Alcms.unsaved = true;
       });
-    })
+    });
 
     $(window).on('beforeunload', function() {
       return window.Alcms.unsaved ? 'You have unsaved changes!' : undefined;

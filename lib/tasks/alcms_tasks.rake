@@ -4,5 +4,6 @@ namespace :alcms do
     # application_helper.rb << include Alcms::ApplicationHelper
     # routes.rb << mount Alcms::Engine => '/alcms'
     # create config/initializers/alcms.rb
+    # create public/alcms/styles.js
   end
 end
