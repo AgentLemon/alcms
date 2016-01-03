@@ -67,7 +67,8 @@ Usage
 
 In a view:
 
-    = render_cms_block <block-name>, <text-name>, classes: <additional classes>, readonly: <true|false>
+    = render_cms_block <block name>, <text name>, classes: <additional classes>, readonly: <true|false> do
+      default markup
 
 Tests
 -----
