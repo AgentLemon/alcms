@@ -3,7 +3,7 @@ PATH
   specs:
     alcms (0.0.2)
       jquery-rails
-      rails (~> 4.2.4)
+      rails
       sass-rails
       slim-rails
 
