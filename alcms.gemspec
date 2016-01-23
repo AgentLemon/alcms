@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails"
-  s.add_dependency "slim-rails"
+  s.add_dependency "slim"
   s.add_dependency "sass-rails"
   s.add_dependency "jquery-rails"
 
