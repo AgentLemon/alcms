@@ -11,6 +11,7 @@ module Alcms
 
     mattr_accessor :editor_mode
     mattr_accessor :can_save
+    mattr_accessor :admin_path
 
     self.editor_mode = Proc.new do
       params[:edit]
@@ -19,6 +20,8 @@ module Alcms
     self.can_save = Proc.new do
       true
     end
+
+    self.admin_path = nil
 
     def self.editor_mode_condition(&block)
       self.editor_mode = Proc.new(&block)

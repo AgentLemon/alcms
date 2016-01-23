@@ -15,8 +15,11 @@
     text-align: center;
     font-size: 24px;
     line-height: $title-height;
-    letter-spacing: 7px;
     z-index: 1001;
+
+    .caption {
+      letter-spacing: 7px;
+    }
 
     .buttons-left {
       display: inline-block;
@@ -26,6 +29,11 @@
 
       .btn {
         margin-right: 5px;
+      }
+
+      .alcms-separator {
+        margin-left: 5px;
+        margin-right: 10px;
       }
     }
 
@@ -37,6 +45,11 @@
 
       .btn {
         margin-left: 5px;
+      }
+
+      .alcms-separator {
+        margin-left: 10px;
+        margin-right: 5px;
       }
     }
   }

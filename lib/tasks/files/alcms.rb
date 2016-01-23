@@ -11,4 +11,8 @@ Alcms::Engine.setup do |config|
   # config.can_save_condition do
   #   current_user.admin?
   # end
+
+  # path to alcms admin page
+  # button is hidden if nil
+  # config.admin_path = '/admin/cms'
 end

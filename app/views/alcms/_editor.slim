@@ -3,9 +3,11 @@
     button.btn.btn-default.js-alcms-open-menu
       span.down ▼
       span.up ▲
-    /button.btn.btn-default ☰
-    /button.btn.btn-default ▲
-  | Editor Mode
+    span.alcms-separator
+    - if Alcms::Engine.admin_path.present?
+      a.btn.btn-default href=Alcms::Engine.admin_path Back
+    a.btn.btn-primary href=request.path Close
+  span.caption Editor Mode
   .buttons-right
     button.btn.btn-success.alcms-save data-url=alcms.save_blocks_path Save
     button.btn.btn-danger.alcms-publish data-url=alcms.publish_blocks_path Publish

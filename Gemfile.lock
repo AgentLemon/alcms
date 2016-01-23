@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    alcms (0.0.7)
+    alcms (0.1.0)
       jquery-rails
       rails
       sass-rails
