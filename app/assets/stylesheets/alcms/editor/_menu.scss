@@ -26,7 +26,7 @@
     .static-container {
       display: inline-block;
       float: left;
-      width: 250px;
+      width: 163px;
       height: $menu-container-height;
       padding: $menu-container-padding;
       border-right: dashed 1px #3c3c3c;
@@ -133,6 +133,7 @@
       font-family: monospace;
       font-size: 13.33px;
       line-height: normal;
+      width: 120px;
 
       &:focus {
         outline: none;
