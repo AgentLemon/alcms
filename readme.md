@@ -7,6 +7,8 @@ Summary
 
 Simple CMS feature with content scheduling for rails apps.
 
+**Live DEMO:** [http://alcms-demo.herokuapp.com/](http://alcms-demo.herokuapp.com/ "Live demo")
+
 Setup
 -----
 
