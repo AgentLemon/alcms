@@ -1,0 +1,76 @@
+$timeline-color: #eee;
+$timeline-height: 70px;
+
+.timeline {
+  height: $timeline-height;
+  position: relative;
+
+  .line {
+    height: 2px;
+    background: $timeline-color;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  .marker {
+    height: 5px;
+    width: 2px;
+    background: $timeline-color;
+    position: absolute;
+    bottom: 2px;
+    z-index: 10;
+  }
+
+  .interval {
+    border: solid 1px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .interval-primary {
+    background-color: rgba(100, 200, 100, 0.8);
+    border-color: rgba(150, 200, 150, 1);
+  }
+
+  .interval-1 {
+    background-color: rgba(100, 100, 200, 0.3);
+    border-color: rgba(100, 100, 200, 0.5);
+  }
+
+  .interval-2 {
+    background-color: rgba(200, 100, 100, 0.3);
+    border-color: rgba(200, 100, 100, 0.5);
+  }
+
+  .interval-3 {
+    background-color: rgba(200, 200, 100, 0.3);
+    border-color: rgba(200, 200, 100, 0.5);
+  }
+
+  .interval-4 {
+    background-color: rgba(200, 100, 200, 0.3);
+    border-color: rgba(200, 100, 200, 0.5);
+  }
+
+  .interval-5 {
+    background-color: rgba(100, 200, 200, 0.3);
+    border-color: rgba(100, 200, 200, 0.5);
+  }
+
+  .step {
+    position: absolute;
+    height: $timeline-height + 1;
+    bottom: 0;
+    z-index: 11;
+    cursor: pointer;
+    &:hover, &.hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      border-left: solid 1px;
+      border-right: solid 1px;
+      border-top: none;
+      border-bottom: none;
+    }
+  }
+}

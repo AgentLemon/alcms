@@ -4,7 +4,7 @@
     $publish = $('.alcms-publish');
 
     function getBlockParams(id, name) {
-      var $tr = $('.alcms-editor .tbl-blocks tr[data-block-name="' + name + '"]');
+      var $tr = $('.alcms-editor .tbl-blocks div[data-block-name="' + name + '"]');
       return {
         id: id,
         name: name,
