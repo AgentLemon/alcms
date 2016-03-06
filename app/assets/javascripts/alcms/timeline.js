@@ -5,6 +5,14 @@ $.fn.timeline = function(marks) {
     cellHeight: 10
   };
 
+  function formatTime(time, options) {
+    if (time) {
+      return time.toJSON().replace(/T/, '<br>').replace(/:[^:]+$/, '');
+    } else {
+      return 'n/a';
+    }
+  }
+
   if (marks === undefined) {
     marks = $this.data('marks')
   } else {
@@ -32,6 +40,11 @@ $.fn.timeline = function(marks) {
         var $step = $('<div/>').addClass('step');
         $step.data('index', i + 1);
         $step.css({ left: (i + 1) * options.cellWidth, width: options.cellWidth });
+
+        var $labelLeft = $('<div/>').addClass('label-left').html(formatTime(marks[i], { separator: '<br>' }));
+        var $labelRight = $('<div/>').addClass('label-right').html(formatTime(marks[i + 1], { separator: '<br>' }));
+
+        $step.append($labelLeft).append($labelRight);
         $this.append($step);
       }
     }
@@ -39,7 +52,7 @@ $.fn.timeline = function(marks) {
     $this.css({ width: (marks.length + 1) * options.cellWidth });
   }
 
-  var timelineObject = {
+  return {
     marks: marks,
     add: function(starts, expires) {
       var getIndex = function(date, def) {
@@ -73,6 +86,4 @@ $.fn.timeline = function(marks) {
       $this.append($interval);
     }
   };
-
-  return timelineObject;
 };

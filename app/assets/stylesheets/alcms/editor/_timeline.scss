@@ -62,7 +62,7 @@ $timeline-height: 70px;
     position: absolute;
     height: $timeline-height + 1;
     bottom: 0;
-    z-index: 11;
+    z-index: 12;
     cursor: pointer;
     &:hover, &.hover {
       background-color: rgba(255, 255, 255, 0.3);
@@ -71,6 +71,58 @@ $timeline-height: 70px;
       border-right: solid 1px;
       border-top: none;
       border-bottom: none;
+    }
+
+    &.hover {
+      z-index: 11;
+    }
+
+    &:hover {
+      .label-left, .label-right {
+        visibility: visible;
+      }
+    }
+
+    .label-left, .label-right {
+      visibility: hidden;
+      font-size: 10px;
+      color: black;
+      background-color: wheat;
+      padding: 1px 2px;
+      position: absolute;
+      top: 77px;
+      width: 60px;
+      height: 22px;
+      pointer-events: none;
+
+      &:after {
+        content: '';
+        border: 6px solid transparent;
+        border-bottom-color: wheat;
+        border-top: 0;
+        display: inline-block;
+        margin: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: -6px;
+      }
+    }
+
+    .label-left {
+      text-align: right;
+      left: -47px;
+      &:after {
+        left: 41px;
+      }
+    }
+
+    .label-right {
+      text-align: left;
+      right: -47px;
+      &:after {
+        left: 11px;
+      }
     }
   }
 }

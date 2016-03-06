@@ -6,7 +6,10 @@
   .alcms-editor-block {
     position: relative;
     line-height: 24px;
-    height: 70px;
+
+    &.alcms-bottom-text {
+      padding-top: 46px;
+    }
   }
 
   .alcms-blocks-starts, .alcms-blocks-expires {
@@ -14,7 +17,6 @@
 
     .alcms-datetime {
       height: 20px;
-      position: absolute;
       display: inline-block;
       top: -5px;
       left: 0;

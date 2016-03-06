@@ -63,16 +63,10 @@
       return $tr;
     }
 
-    function appendBrakes($element, amount) {
-      for(var i = 0; i < amount; i++) {
-        $element.append("<br/>");
-      }
-    }
-
     function getNames(blocks) {
       var $td = $("<td/>").addClass("alcms-blocks-names left");
       $.each(blocks, function(name, block) {
-        var $div = $("<div/>").addClass("alcms-editor-block");
+        var $div = $("<div/>").addClass("alcms-editor-block alcms-bottom-text");
 
         //var $checkbox = $('<input type="checkbox" checked/>');
         //$checkbox.on('change', function() {
@@ -88,8 +82,6 @@
           })
         });
         $div.append($a);
-
-        appendBrakes($div, block.versions.length);
         $td.append($div);
       });
       return $td;
@@ -98,9 +90,8 @@
     function getStarts(blocks) {
       var $td = $("<td/>").addClass("alcms-blocks-starts");
       $.each(blocks, function(name, block) {
-        var $div = $("<div/>").addClass("alcms-editor-block");
+        var $div = $("<div/>").addClass("alcms-editor-block alcms-bottom-text");
         $div.append($('<input id="starts_at" class="date-value alcms-datetime">').val(normalizeTime(block.starts)));
-        appendBrakes($div, block.versions.length);
         $div.attr('data-block-name', name);
         $td.append($div);
       });
@@ -111,9 +102,8 @@
     function getExpires(blocks) {
       var $td = $("<td/>").addClass("alcms-blocks-expires");
       $.each(blocks, function(name, block) {
-        var $div = $("<div/>").addClass("alcms-editor-block");
+        var $div = $("<div/>").addClass("alcms-editor-block alcms-bottom-text");
         $div.append($('<input id="expires_at" class="date-value alcms-datetime">').val(normalizeTime(block.expires)));
-        appendBrakes($div, block.versions.length);
         $div.attr('data-block-name', name);
         $td.append($div);
       });
@@ -155,7 +145,7 @@
     function getButtons(blocks) {
       var $td = $("<td/>").addClass("alcms-blocks-buttons");
       $.each(blocks, function(name, block) {
-        var $div = $("<div/>").addClass("alcms-editor-block");
+        var $div = $("<div/>").addClass("alcms-editor-block alcms-bottom-text");
         var $clone = $('<button class="alcms-clone btn btn-xs btn-success">').text('Clone');
         var $destroy = $('<button class="alcms-destroy btn btn-xs btn-danger">').text('Delete');
 
@@ -172,7 +162,6 @@
         }
 
         $div.append($clone).append('&nbsp;').append($destroy);
-        appendBrakes($div, block.versions.length);
         $td.append($div);
       });
       return $td;
