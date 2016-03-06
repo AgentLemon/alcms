@@ -1,5 +1,5 @@
 (function($) {
-  window.Alcms = {};
+  window.Alcms = { jQuery: $, $: $ };
 
   $(function() {
     var $body = $('body');

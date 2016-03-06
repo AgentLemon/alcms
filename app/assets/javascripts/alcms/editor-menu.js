@@ -123,7 +123,8 @@
           }
         });
       });
-      marks = $.map(marks, function(item) { return new Date(item); }).sort();
+      marks = $.map(marks, function(item) { return new Date(item); });
+      marks = marks.sort(function(a, b){ return ( a > b ? 1 : ( a == b ? 0 : -1 ) ) });
       return marks;
     }
 
@@ -133,7 +134,7 @@
       var $td = $("<td/>").addClass("alcms-blocks-versions");
       $.each(blocks, function(name, block) {
         var $div = $("<div/>").addClass("alcms-editor-block");
-        var timeline = $div.timeline(getTimeline(blocks));
+        var timeline = $div.timeline(getTimeline(blocks), Alcms.currentDate);
         $.each(block.versions, function(index, version) {
           timeline.add(new Date(version.starts_at_draft), new Date(version.expires_at_draft));
         });

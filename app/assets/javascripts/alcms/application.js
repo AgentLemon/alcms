@@ -15,4 +15,6 @@
 //= require ckeditor
 //= require jquery.datetimepicker.full.min
 //= require alcms/main
+//= require alcms/date-time
+//= require alcms/time-travel
 //= require_tree .

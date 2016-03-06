@@ -10,7 +10,7 @@
     } else {
       $this.find(".alcms-datetime").datetimepicker(params);
     }
-  }
+  };
 
   $(function() {
     $("body").initAlcmsDates();

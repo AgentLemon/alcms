@@ -78,7 +78,7 @@ $timeline-height: 70px;
     }
 
     &:hover {
-      .label-left, .label-right {
+      .label-left, .label-right, .label-now {
         visibility: visible;
       }
     }
@@ -94,7 +94,9 @@ $timeline-height: 70px;
       width: 60px;
       height: 22px;
       pointer-events: none;
+    }
 
+    .label-left, .label-right, .label-now {
       &:after {
         content: '';
         border: 6px solid transparent;
@@ -124,5 +126,35 @@ $timeline-height: 70px;
         left: 11px;
       }
     }
+
+    .label-now {
+      color: white;
+      background-color: #c9302c;
+      font-size: 10px;
+      position: absolute;
+      top: 5px;
+      left: 28px;
+      padding: 1px 4px 0px 0px;
+      line-height: 12px;
+      visibility: hidden;
+
+      &:after {
+        border: 7px solid transparent;
+        border-right-color: #c9302c;
+        border-left: 0;
+        left: -7px;
+        top: 0;
+      }
+    }
+  }
+
+  .red-line {
+    left: 260px;
+    height: 100%;
+    width: 2px;
+    background-color: #c9302c;
+    position: absolute;
+    z-index: 15;
+    pointer-events: none;
   }
 }

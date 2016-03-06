@@ -1,15 +1,39 @@
-$.fn.timeline = function(marks) {
+$.fn.timeline = function(marks, date) {
   var $this = $(this);
   var options = {
     cellWidth: 40,
     cellHeight: 10
   };
 
-  function formatTime(time, options) {
+  function formatTime(time) {
     if (time) {
       return time.toJSON().replace(/T/, '<br>').replace(/:[^:]+$/, '');
     } else {
       return 'n/a';
+    }
+  }
+
+  function processInterval(i) {
+    var $marker = $('<div/>').addClass('marker');
+    $marker.css({ left: (i + 1) * options.cellWidth });
+    $this.append($marker);
+    if (i < marks.length) {
+      var $step = $('<div/>').addClass('step');
+      $step.data('index', i + 1);
+      $step.css({ left: (i + 1) * options.cellWidth, width: options.cellWidth });
+
+      var $labelLeft = $('<div/>').addClass('label-left').html(formatTime(marks[i]));
+      var $labelRight = $('<div/>').addClass('label-right').html(formatTime(marks[i + 1]));
+
+      if ((date > marks[i] || marks[i] == null) && (date < marks[i + 1] || marks[i + 1] == null)) {
+        var $redline = $('<div/>').addClass('red-line').css({ left: (i + 1) * options.cellWidth + options.cellWidth / 2 });
+        var $labelNow = $('<div/>').addClass('label-now').html('NOW');
+        $step.append($labelNow);
+        $this.append($redline);
+      }
+
+      $step.append($labelLeft).append($labelRight);
+      $this.append($step);
     }
   }
 
@@ -33,20 +57,7 @@ $.fn.timeline = function(marks) {
     });
 
     for(var i = -1; i < marks.length + 1; i++) {
-      var $marker = $('<div/>').addClass('marker');
-      $marker.css({ left: (i + 1) * options.cellWidth });
-      $this.append($marker);
-      if (i < marks.length) {
-        var $step = $('<div/>').addClass('step');
-        $step.data('index', i + 1);
-        $step.css({ left: (i + 1) * options.cellWidth, width: options.cellWidth });
-
-        var $labelLeft = $('<div/>').addClass('label-left').html(formatTime(marks[i], { separator: '<br>' }));
-        var $labelRight = $('<div/>').addClass('label-right').html(formatTime(marks[i + 1], { separator: '<br>' }));
-
-        $step.append($labelLeft).append($labelRight);
-        $this.append($step);
-      }
+      processInterval(i);
     }
 
     $this.css({ width: (marks.length + 1) * options.cellWidth });

@@ -2,6 +2,9 @@
   $(function() {
     var $date = $('.alcms-editor #alcms-time-travel');
 
+    var dateVal = $date.val();
+    Alcms.currentDate = dateVal ? new Date(dateVal) : new Date();
+
     function getParams() {
       var params = {};
       var search = location.search.substr(1) || "";
