@@ -1,3 +1,5 @@
 .idea
 spec/dummy/db/development.sqlite3
 spec/dummy/db/test.sqlite3
+tmp
+spec/dummy/log
