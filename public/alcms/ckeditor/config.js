@@ -7,6 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	config.extraPlugins = 'font';
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
@@ -16,14 +17,14 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'insert' },
 		{ name: 'forms' },
 		{ name: 'tools' },
-		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'about' },
 		{ name: 'others' },
 		'/',
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'about' }
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] }
 	];
 
 	// Remove some buttons provided by the standard plugins, which are
@@ -37,4 +38,20 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.allowedContent = true;
+
+	config.fontSize_sizes = "30%/0.3em;40%/0.4em;50%/0.5em;60%/0.6em;70%/0.7em;80%/0.8em;90%/0.9em;100%/1em;110%/1.1em;120%/1.2em;130%/1.3em;140%/1.4em;150%/1.5em;160%/1.6em;170%/1.7em;180%/1.8em;190%/1.9em;200%/2.0em;250%/2.5em;300%/3.0em;";
+	config.font_style = {
+		element: 'p',
+		styles: { 'font-family': '#(family)' },
+		overrides: [ {
+			element: 'font', attributes: { 'face': null }
+		} ]
+	};
+	config.fontSize_style = {
+		element: 'p',
+		styles: { 'font-size': '#(size)' },
+		overrides: [ {
+			element: 'font', attributes: { 'size': null }
+		} ]
+	};
 };
